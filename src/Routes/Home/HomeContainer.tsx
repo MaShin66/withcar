@@ -301,6 +301,8 @@ class HomeContainer extends React.Component<IProps, IState> {
       );
     }
   };
+
+  // 경로 만들기
   public createPath = () => {
     const { toLat, toLng, lat, lng } = this.state;
     if (this.directions) {
@@ -346,6 +348,8 @@ class HomeContainer extends React.Component<IProps, IState> {
       toast.error("There is no route there, you have to swim ");
     }
   };
+
+  // 금액 설정
   public setPrice = () => {
     const { distance } = this.state;
     if (distance) {
