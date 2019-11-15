@@ -42,7 +42,7 @@ class PhoneLoginContainer extends React.Component<
           const { StartPhoneVerification } = data;
           const phone = `${countryCode}${phoneNumber}`;
           if (StartPhoneVerification.ok) {
-            toast.success("SMS Sent! Redirecting you...");
+            toast.success("SMS로 코드가 전송되었습니다.");
             setTimeout(() => {
               history.push({
                 pathname: "/verify-phone",
@@ -92,7 +92,7 @@ class PhoneLoginContainer extends React.Component<
     if (isValid) {
       this.phoneMutation();
     } else {
-      toast.error("Please write a valid phone number");
+      toast.error("올바른 휴대폰 번호를 입력해주세요");
     }
   };
 }

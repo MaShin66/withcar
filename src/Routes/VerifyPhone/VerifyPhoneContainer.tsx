@@ -48,7 +48,7 @@ class VerifyPhoneContainer extends React.Component<IProps, IState> {
                     }
                   });
                 }
-                toast.success("You're verified, loggin in now");
+                toast.success("확인되었습니다. 로그인 화면으로 이동합니다.");
               } else {
                 toast.error(CompletePhoneVerification.error);
               }

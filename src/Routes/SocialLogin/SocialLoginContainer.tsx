@@ -73,7 +73,7 @@ class SocialLoginContainer extends React.Component<IProps, IState> {
         }
       });
     } else {
-      toast.error("Could not log you in 😔");
+      toast.error("로그인 할 수 없습니다 😔");
     }
   };
 }

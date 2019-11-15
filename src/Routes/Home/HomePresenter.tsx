@@ -44,7 +44,7 @@ const ExtendedButton = styled(Button)`
   width: 80%;
 `;
 
-const RequestButton = ExtendedButton.extend`
+const RequestButton = styled(ExtendedButton)`
   bottom: 250px;
 `;
 
@@ -129,7 +129,7 @@ const HomePresenter: React.SFC<IProps> = ({
           acceptRideFn={acceptRideFn}
         />
       )}
-      <Map innerRef={mapRef} />
+      <Map ref={mapRef} />
     </Sidebar>
   </Container>
 );

@@ -74,6 +74,7 @@ class FindAddressContainer extends React.Component<IProps, IState> {
     this.map = new maps.Map(mapNode, mapConfig);
     this.map.addListener("dragend", this.handleDragEnd);
   };
+//   마우스가 끝나는 지점에 중심값을 새로 갱신
   public handleDragEnd = () => {
     const newCenter = this.map.getCenter();
     const lat = newCenter.lat();

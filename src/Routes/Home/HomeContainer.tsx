@@ -68,8 +68,7 @@ class HomeContainer extends React.Component<IProps, IState> {
     lat: 0,
     lng: 0,
     price: undefined,
-    toAddress:
-      "Athens International Airport (ATH), Attiki Odos, Spata Artemida 190 04, Greece",
+    toAddress: "",
     toLat: 0,
     toLng: 0
   };
@@ -321,7 +320,7 @@ class HomeContainer extends React.Component<IProps, IState> {
     const directionsOptions: google.maps.DirectionsRequest = {
       destination: to,
       origin: from,
-      travelMode: google.maps.TravelMode.DRIVING
+      travelMode: google.maps.TravelMode.TRANSIT
     };
     directionsService.route(directionsOptions, this.handleRouteRequest);
   };
@@ -352,6 +351,7 @@ class HomeContainer extends React.Component<IProps, IState> {
   // 금액 설정
   public setPrice = () => {
     const { distance } = this.state;
+    console.log(distance);
     if (distance) {
       this.setState({
         price: Number(parseFloat(distance.replace(",", "")) * 3).toFixed(2)
