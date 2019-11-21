@@ -40,6 +40,7 @@ class VerifyPhoneContainer extends React.Component<IProps, IState> {
             }}
             onCompleted={data => {
               const { CompletePhoneVerification } = data;
+              console.log(CompletePhoneVerification);
               if (CompletePhoneVerification.ok) {
                 if (CompletePhoneVerification.token) {
                   logUserIn({

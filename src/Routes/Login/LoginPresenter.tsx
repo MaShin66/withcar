@@ -36,6 +36,7 @@ const Footer = styled.div``;
 
 const Subtitle = styled.h2`
   font-size: 30px;
+  
 `;
 
 const FakeInput = styled.div`
@@ -70,25 +71,25 @@ interface IProps extends RouteComponentProps<any> {}
 const OutHomePresenter: React.SFC<IProps> = () => (
   <Container>
     <Helmet>
-      <title>Login | Nuber</title>
+      <title>Login | WithCar</title>
     </Helmet>
     <Header>
       <Logo>
-        <Title>Nuber</Title>
+        <Title>WithCar</Title>
       </Logo>
     </Header>
     <Footer>
       <Link to={"/phone-login"}>
         <PhoneLogin>
-          <Subtitle>Get moving with Nuber</Subtitle>
+          <Subtitle>WithCar 카풀 시작</Subtitle>
           <FakeInput>
-            🇰🇷 +82 <Grey>Enter your mobile number</Grey>
+            🇰🇷 +82 <Grey>휴대폰 번호로 회원가입하기</Grey>
           </FakeInput>
         </PhoneLogin>
       </Link>
       <Link to={"/social-login"}>
         <SocialLogin>
-          <SocialLink>Or connect with social</SocialLink>
+          <SocialLink>페이스북 아이디로 회원가입하기</SocialLink>
         </SocialLogin>
       </Link>
     </Footer>

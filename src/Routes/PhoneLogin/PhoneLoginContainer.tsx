@@ -89,6 +89,7 @@ class PhoneLoginContainer extends React.Component<
     const phone = `${countryCode}${phoneNumber}`;
     // 번호 유효한지 정규화 코드
     const isValid = /^\+[1-9]{1}[0-9]{7,11}$/.test(phone);
+    // const isValid = /^(01[016789]{1}|02|0[3-9]{1}[0-9]{1})-?[0-9]{3,4}-?[0-9]{4}$/.test(phone);
     if (isValid) {
       this.phoneMutation();
     } else {

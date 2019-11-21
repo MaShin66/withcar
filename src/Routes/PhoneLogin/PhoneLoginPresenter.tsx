@@ -56,9 +56,7 @@ const Button = styled.button`
 interface IProps {
   countryCode: string;
   phoneNumber: string;
-  onInputChange: (
-    event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
-  ) => void;
+  onInputChange: (event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => void;
   onSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
   loading: boolean;
 }
@@ -72,10 +70,10 @@ const PhoneLoginPresenter: React.SFC<IProps> = ({
 }) => (
   <Container>
     <Helmet>
-      <title>Phone Login | Number</title>
+      <title>휴대폰 로그인 | WithCar</title>
     </Helmet>
     <BackArrowExtended backTo={"/"} />
-    <Title>Enter your mobile number</Title>
+    <Title>휴대폰 번호를 입력하세요</Title>
     <CountrySelect
       value={countryCode}
       name={"countryCode"}
@@ -89,7 +87,7 @@ const PhoneLoginPresenter: React.SFC<IProps> = ({
     </CountrySelect>
     <Form onSubmit={onSubmit}>
       <Input
-        placeholder={"053 690 2129"}
+        placeholder={"10 1234 5678 (맨 앞에 0을 빼고 입력해주세요)"}
         value={phoneNumber}
         name={"phoneNumber"}
         onChange={onInputChange}

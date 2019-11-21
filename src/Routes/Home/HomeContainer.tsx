@@ -36,7 +36,7 @@ interface IState {
   lng: number;
   distance: string;
   duration?: string;
-  price?: string;
+  price?: number;
   fromAddress: string;
   isDriving: boolean;
 }
@@ -72,17 +72,23 @@ class HomeContainer extends React.Component<IProps, IState> {
     toLat: 0,
     toLng: 0
   };
+
+  // constructor(props)
   constructor(props) {
     super(props);
     this.mapRef = React.createRef();
     this.drivers = [];
   }
+
+  // componentDidMount()
   public componentDidMount() {
     navigator.geolocation.getCurrentPosition(
       this.handleGeoSucces,
       this.handleGeoError
     );
   }
+
+  // 일반적인 render 시작
   public render() {
     const {
       isMenuOpen,
@@ -97,6 +103,7 @@ class HomeContainer extends React.Component<IProps, IState> {
       duration,
       isDriving
     } = this.state;
+    
     return (
       <ProfileQuery query={USER_PROFILE} onCompleted={this.handleProfileQuery}>
         {({ data, loading }) => (
@@ -176,6 +183,9 @@ class HomeContainer extends React.Component<IProps, IState> {
       </ProfileQuery>
     );
   }
+
+  // 여기서부터 함수 시작
+  // 메뉴 버튼 누르면 창 뜨는 것
   public toggleMenu = () => {
     this.setState(state => {
       return {
@@ -183,6 +193,7 @@ class HomeContainer extends React.Component<IProps, IState> {
       };
     });
   };
+
   public handleGeoSucces = (positon: Position) => {
     const {
       coords: { latitude, longitude }
@@ -194,6 +205,7 @@ class HomeContainer extends React.Component<IProps, IState> {
     this.getFromAdress(latitude, longitude);
     this.loadMap(latitude, longitude);
   };
+
   public getFromAdress = async (lat: number, lng: number) => {
     const address = await reverseGeoCode(lat, lng);
     if (address) {
@@ -202,6 +214,7 @@ class HomeContainer extends React.Component<IProps, IState> {
       });
     }
   };
+
   public loadMap = (lat, lng) => {
     const { google } = this.props;
     const maps = google.maps;
@@ -240,6 +253,7 @@ class HomeContainer extends React.Component<IProps, IState> {
       watchOptions
     );
   };
+
   public handleGeoWatchSuccess = (position: Position) => {
     const { reportLocation } = this.props;
     const {
@@ -254,12 +268,15 @@ class HomeContainer extends React.Component<IProps, IState> {
       }
     });
   };
+
   public handleGeoWatchError = () => {
     console.log("Error watching you");
   };
+
   public handleGeoError = () => {
     console.log("No location");
   };
+
   public onInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const {
       target: { name, value }
@@ -268,6 +285,8 @@ class HomeContainer extends React.Component<IProps, IState> {
       [name]: value
     } as any);
   };
+
+  // 주소 검색하는 버튼 누르면
   public onAddressSubmit = async () => {
     const { toAddress } = this.state;
     const { google } = this.props;
@@ -301,7 +320,7 @@ class HomeContainer extends React.Component<IProps, IState> {
     }
   };
 
-  // 경로 만들기
+  // 경로 만들기 (위 함수에 이어서)
   public createPath = () => {
     const { toLat, toLng, lat, lng } = this.state;
     if (this.directions) {
@@ -324,6 +343,8 @@ class HomeContainer extends React.Component<IProps, IState> {
     };
     directionsService.route(directionsOptions, this.handleRouteRequest);
   };
+
+  // 경로 요청 (위 함수에 이어서)
   public handleRouteRequest = (
     result: google.maps.DirectionsResult,
     status: google.maps.DirectionsStatus
@@ -344,20 +365,21 @@ class HomeContainer extends React.Component<IProps, IState> {
         this.setPrice
       );
     } else {
-      toast.error("There is no route there, you have to swim ");
+      toast.error("구글 정책으로 인해 당분간은 대중교통으로만 경로가 나타납니다");
     }
   };
 
-  // 금액 설정
+  // 금액 설정 (위 함수에 이어서)
   public setPrice = () => {
     const { distance } = this.state;
     console.log(distance);
     if (distance) {
       this.setState({
-        price: Number(parseFloat(distance.replace(",", "")) * 3).toFixed(2)
+        price: Number((parseFloat(distance.replace(",", "")) * 3).toFixed(2))
       });
     }
   };
+
   public handleNearbyDrivers = (data: {} | getDrivers) => {
     if ("GetNearbyDrivers" in data) {
       const {
@@ -403,6 +425,7 @@ class HomeContainer extends React.Component<IProps, IState> {
       }
     }
   };
+
   public handleRideRequest = (data: requestRide) => {
     const { history } = this.props;
     const { RequestRide } = data;
@@ -413,6 +436,7 @@ class HomeContainer extends React.Component<IProps, IState> {
       toast.error(RequestRide.error);
     }
   };
+
   public handleProfileQuery = (data: userProfile) => {
     const { GetMyProfile } = data;
     if (GetMyProfile.user) {
@@ -424,6 +448,7 @@ class HomeContainer extends React.Component<IProps, IState> {
       });
     }
   };
+
   public handleRideAcceptance = (data: acceptRide) => {
     const { history } = this.props;
     const { UpdateRideStatus } = data;

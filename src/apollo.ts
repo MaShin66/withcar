@@ -39,14 +39,10 @@ const httpLink = new HttpLink({
 
 const wsLink = new WebSocketLink({
   options: {
-    connectionParams: {
-      "X-JWT": getToken()
-    },
+    connectionParams: { "X-JWT": getToken() },
     reconnect: true
   },
-  uri: isDev
-    ? "ws://localhost:4000/subscription"
-    : "ws://nuberserver.now.sh/subscription"
+  uri: "ws://localhost:4000/subscription"
 });
 
 const combinedLinks = split(

@@ -33,17 +33,17 @@ const EditAccountPresenter: React.SFC<IProps> = ({
   firstName,
   lastName,
   email,
-  onSubmit,
   profilePhoto,
+  onSubmit,
   onInputChange,
   loading,
   uploading
 }) => (
   <Container>
     <Helmet>
-      <title>Edit Account | Number</title>
+      <title>내정보 편집하기 | WithCar</title>
     </Helmet>
-    <Header title={"Edit Account"} backTo={"/"} />
+    <Header title={"내정보 편집하기"} backTo={"/"} />
     <ExtendedForm submitFn={onSubmit}>
       <PhotoInput
         uploading={uploading}
@@ -54,14 +54,14 @@ const EditAccountPresenter: React.SFC<IProps> = ({
         onChange={onInputChange}
         type={"text"}
         value={firstName}
-        placeholder={"First name"}
+        placeholder={"이름"}
         name={"firstName"}
       />
       <ExtendedInput
         onChange={onInputChange}
         type={"text"}
         value={lastName}
-        placeholder={"Last name"}
+        placeholder={"성"}
         name={"lastName"}
       />
       <ExtendedInput
@@ -71,7 +71,7 @@ const EditAccountPresenter: React.SFC<IProps> = ({
         placeholder={"Email"}
         name={"email"}
       />
-      <Button onClick={null} value={loading ? "Loading" : "Update"} />
+      <Button onClick={null} value={loading ? "업데이트중.." : "업데이트"} />
     </ExtendedForm>
   </Container>
 );

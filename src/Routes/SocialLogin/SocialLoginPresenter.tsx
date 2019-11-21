@@ -46,6 +46,7 @@ const SocialLoginPresenter: React.SFC<IProps> = ({ loginCallback }) => (
       autoLoad={false}
       fields="name,first_name,last_name,email"
       callback={loginCallback}
+      // 버튼 모양을 바꿔주기 위한 것
       render={renderProps => (
         <Link onClick={renderProps.onClick}>
           <Icon>

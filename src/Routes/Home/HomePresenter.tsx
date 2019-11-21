@@ -49,18 +49,18 @@ const RequestButton = styled(ExtendedButton)`
 `;
 
 interface IProps {
+  loading: boolean;
   isMenuOpen: boolean;
   toggleMenu: () => void;
-  loading: boolean;
   mapRef: any;
   toAddress: string;
-  onAddressSubmit: () => void;
+  onInputChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   price?: string;
   data?: userProfile;
-  onInputChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onAddressSubmit: () => void;
   requestRideFn?: MutationFn;
-  acceptRideFn?: MutationFn;
   nearbyRide?: getRides;
+  acceptRideFn?: MutationFn;
 }
 
 const HomePresenter: React.SFC<IProps> = ({
@@ -79,7 +79,7 @@ const HomePresenter: React.SFC<IProps> = ({
 }) => (
   <Container>
     <Helmet>
-      <title>Home | Number</title>
+      <title>Home | WithCar</title>
     </Helmet>
     <Sidebar
       sidebar={<Menu />}
@@ -106,7 +106,7 @@ const HomePresenter: React.SFC<IProps> = ({
             <ExtendedButton
               onClick={onAddressSubmit}
               disabled={toAddress === ""}
-              value={price ? "Change address" : "Pick Address"}
+              value={price ? "도착지 바꾸기" : "도착지 선택하기"}
             />
           </React.Fragment>
         )}
@@ -114,7 +114,7 @@ const HomePresenter: React.SFC<IProps> = ({
         <RequestButton
           onClick={requestRideFn}
           disabled={toAddress === ""}
-          value={`Request Ride ($${price})`}
+          value={`요청할 금액은 $${price}`}
         />
       )}
       {ride && (

@@ -34,17 +34,17 @@ const VerifyPhonePresenter: React.SFC<IProps> = ({
     <Helmet>
       <title>Verify Phone | Number</title>
     </Helmet>
-    <Header backTo={"/phone-login"} title={"Verify Phone Number"} />
+    <Header backTo={"/phone-login"} title={"폰 인증번호 입력"} />
     <ExtendedForm submitFn={onSubmit}>
       <ExtendedInput
         value={verificationKey}
-        placeholder={"Enter Verification Code"}
+        placeholder={"확인 코드를 입력해주세요"}
         onChange={onChange}
         name={"verificationKey"}
       />
       <Button
         disabled={loading}
-        value={loading ? "Verifying" : "Submit"}
+        value={loading ? "확인중" : "확인"}
         onClick={null}
       />
     </ExtendedForm>

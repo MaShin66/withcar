@@ -108,10 +108,10 @@ const MenuPresenter: React.SFC<IProps> = ({
               </Text>
             </Grid>
           </Header>
-          <SLink to="/trips">Your Trips</SLink>
-          <SLink to="/settings">Settings</SLink>
+          <SLink to="/trips">나의 경로</SLink>
+          <SLink to="/settings">설정</SLink>
           <ToggleDriving onClick={toggleDrivingFn} isDriving={user.isDriving}>
-            {user.isDriving ? "Stop driving" : "Start driving"}
+            {user.isDriving ? "탑승자 모드로 전환" : "드라이버 모드로 전환"}
           </ToggleDriving>
         </React.Fragment>
       )}

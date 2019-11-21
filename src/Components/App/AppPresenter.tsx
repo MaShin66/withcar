@@ -15,25 +15,28 @@ import SocialLogin from "../../Routes/SocialLogin";
 import VerifyPhone from "../../Routes/VerifyPhone";
 
 interface IProps {
-    isLoggedIn: boolean;
+  isLoggedIn: boolean;
 }
 
-const AppPresenter: React.SFC<IProps> = ({ isLoggedIn }) =>
-    <BrowserRouter>{isLoggedIn ? <LoggedInRoutes /> : <LoggedOutRoutes />}</BrowserRouter>
+const AppPresenter: React.SFC<IProps> = ({ isLoggedIn }) => (
+  <BrowserRouter>
+    {isLoggedIn ? <LoggedInRoutes /> : <LoggedOutRoutes />}
+  </BrowserRouter>
+);
 
 const LoggedOutRoutes: React.SFC = () => (
-    <Switch>
+  <Switch>
     <Route path={"/"} exact={true} component={Login} />
     <Route path={"/phone-login"} component={PhoneLogin} />
     <Route path={"/verify-phone"} component={VerifyPhone} />
     <Route path={"/social-login"} component={SocialLogin} />
     <Redirect from={"*"} to={"/"} />
   </Switch>
-)
+);
 
 const LoggedInRoutes: React.SFC = () => (
-    <Switch>
-    <Route path={""} exact={true} component={Home} />
+  <Switch>
+    <Route path={"/"} exact={true} component={Home} />
     <Route path={"/ride/:rideId"} exact={true} component={Ride} />
     <Route path={"/chat/:chatId"} exact={true} component={Chat} />
     <Route path={"/edit-account"} exact={true} component={EditAccount} />
@@ -43,10 +46,10 @@ const LoggedInRoutes: React.SFC = () => (
     <Route path={"/find-address"} exact={true} component={FindAddress} />
     <Redirect from={"*"} to={"/"} />
   </Switch>
-)
+);
 
 AppPresenter.propTypes = {
-    isLoggedIn: PropTypes.bool.isRequired
-}
+  isLoggedIn: PropTypes.bool.isRequired
+};
 
 export default AppPresenter;

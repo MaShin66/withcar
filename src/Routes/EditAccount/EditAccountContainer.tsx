@@ -30,6 +30,7 @@ class UpdateProfileMutation extends Mutation<
 class ProfileQuery extends Query<userProfile> {}
 
 class EditAccountContainer extends React.Component<IProps, IState> {
+
   public state = {
     email: "",
     firstName: "",
@@ -37,6 +38,7 @@ class EditAccountContainer extends React.Component<IProps, IState> {
     profilePhoto: "",
     uploading: false
   };
+
   public render() {
     const { email, firstName, lastName, profilePhoto, uploading } = this.state;
     return (
@@ -52,7 +54,7 @@ class EditAccountContainer extends React.Component<IProps, IState> {
             onCompleted={data => {
               const { UpdateMyProfile } = data;
               if (UpdateMyProfile.ok) {
-                toast.success("Profile updated!");
+                toast.success("프로필이 수정되었습니다");
               } else if (UpdateMyProfile.error) {
                 toast.error(UpdateMyProfile.error);
               }
@@ -81,12 +83,10 @@ class EditAccountContainer extends React.Component<IProps, IState> {
       </ProfileQuery>
     );
   }
-  public onInputChange: React.ChangeEventHandler<
-    HTMLInputElement
-  > = async event => {
-    const {
-      target: { name, value, files }
-    } = event;
+
+  // presenter에 있었던 onInputChange 함수에 대한 정의
+  public onInputChange: React.ChangeEventHandler<HTMLInputElement> = async event => {
+    const { target: { name, value, files } } = event;
     if (files) {
       this.setState({
         uploading: true
@@ -96,11 +96,8 @@ class EditAccountContainer extends React.Component<IProps, IState> {
       formData.append("api_key", "385114413718252");
       formData.append("upload_preset", "jq4alph4");
       formData.append("timestamp", String(Date.now() / 1000));
-      const {
-        data: { secure_url }
-      } = await axios.post(
-        "https://api.cloudinary.com/v1_1/withcar/image/upload",
-        formData
+      const { data: { secure_url } } = await axios.post(
+        "https://api.cloudinary.com/v1_1/withcar/image/upload", formData
       );
       if (secure_url) {
         this.setState({
@@ -116,9 +113,7 @@ class EditAccountContainer extends React.Component<IProps, IState> {
 
   public updateFields = (data: {} | userProfile) => {
     if ("GetMyProfile" in data) {
-      const {
-        GetMyProfile: { user }
-      } = data;
+      const { GetMyProfile: { user } } = data;
       if (user !== null) {
         const { firstName, lastName, email, profilePhoto } = user;
         this.setState({

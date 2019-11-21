@@ -59,9 +59,9 @@ const SettingsPresenter: React.SFC<IProps> = ({
 }) => (
   <React.Fragment>
     <Helmet>
-      <title>Settings | Nuber</title>
+      <title>설정 | Nuber</title>
     </Helmet>
-    <Header title={"Account Settings"} backTo={"/"} />
+    <Header title={"계정 설정"} backTo={"/"} />
     <Container>
       <GridLink to={"/edit-account"}>
         {!userDataLoading &&
@@ -89,8 +89,8 @@ const SettingsPresenter: React.SFC<IProps> = ({
             address={place!.address}
           />
         ))}
-      <SLink to={"/places"}>Go to Places</SLink>
-      <FakeLink onClick={logUserOut as any}>Log Out</FakeLink>
+      <SLink to={"/places"}>경로 기록</SLink>
+      <FakeLink onClick={logUserOut as any}>로그아웃</FakeLink>
     </Container>
   </React.Fragment>
 );

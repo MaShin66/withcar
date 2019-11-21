@@ -62,24 +62,22 @@ const RidePopUp: React.SFC<IProps> = ({
   id
 }) => (
   <Container>
-    <Title>Pick Up Address</Title>
+    <Title>출발지</Title>
     <Data>{pickUpAddress}</Data>
-    <Title>Drop Off Address</Title>
+    <Title>도착지</Title>
     <Data>{dropOffAddress}</Data>
-    <Title>Price</Title>
+    <Title>금액</Title>
     <Data>{price}</Data>
-    <Title>Distance</Title>
+    <Title>거리</Title>
     <Data>{distance}</Data>
-    <Title>Distance</Title>
-    <Data>{distance}</Data>
-    <Title>Passenger:</Title>
+    <Title>탑승자</Title>
     <Passenger>
       <Img src={passengerPhoto} />
       <Data>{passengerName}</Data>
     </Passenger>
     <Button
       onClick={() => acceptRideFn({ variables: { rideId: id } })}
-      value={"Accept Ride"}
+      value={"탑승 수락하기"}
     />
   </Container>
 );
