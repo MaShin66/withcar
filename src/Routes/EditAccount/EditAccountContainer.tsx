@@ -56,6 +56,7 @@ class EditAccountContainer extends React.Component<IProps, IState> {
               if (UpdateMyProfile.ok) {
                 toast.success("프로필이 수정되었습니다");
               } else if (UpdateMyProfile.error) {
+                console.log('UpdateMyProfile.error');
                 toast.error(UpdateMyProfile.error);
               }
             }}

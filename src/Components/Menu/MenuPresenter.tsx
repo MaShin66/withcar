@@ -88,9 +88,7 @@ const MenuPresenter: React.SFC<IProps> = ({
   toggleDrivingFn
 }) => (
   <Container>
-    {!loading &&
-      user &&
-      user.fullName && (
+    {!loading && user && user.fullName && (
         <React.Fragment>
           <Header>
             <Grid>

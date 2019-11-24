@@ -182,6 +182,34 @@ export interface updateProfileVariables {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
+// GraphQL mutation operation: emailSignUp
+// ====================================================
+
+export interface emailSignUp_EmailSignUp {
+  __typename: "EmailSignUpResponse";
+  ok: boolean;
+  error: string | null;
+}
+
+export interface emailSignUp {
+  EmailSignUp: emailSignUp_EmailSignUp;
+}
+
+export interface emailSignUpVariables {
+  firstName: string;
+  lastName: string;
+  email: string;
+  password: string;
+  profilePhoto: string;
+  age: number;
+  phoneNumber: string;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
 // GraphQL mutation operation: reportMovement
 // ====================================================
 
@@ -281,7 +309,7 @@ export interface getRides_GetNearbyRide_ride {
   dropOffAddress: string;
   price: number;
   distance: string;
-  passenger: getRides_GetNearbyRide_ride_passenger;
+  passenger: getRides_GetNearbyRide_ride_passenger | null;
 }
 
 export interface getRides_GetNearbyRide {
@@ -339,7 +367,7 @@ export interface nearbyRides_NearbyRideSubscription {
   dropOffAddress: string;
   price: number;
   distance: string;
-  passenger: nearbyRides_NearbyRideSubscription_passenger;
+  passenger: nearbyRides_NearbyRideSubscription_passenger | null;
 }
 
 export interface nearbyRides {
@@ -399,8 +427,8 @@ export interface getRide_GetRide_ride {
   price: number;
   distance: string;
   duration: string;
-  driver: getRide_GetRide_ride_driver;
-  passenger: getRide_GetRide_ride_passenger;
+  driver: getRide_GetRide_ride_driver | null;
+  passenger: getRide_GetRide_ride_passenger | null;
   chatId: number | null;
 }
 
@@ -450,8 +478,8 @@ export interface rideUpdates_RideStatusSubscription {
   price: number;
   distance: string;
   duration: string;
-  driver: rideUpdates_RideStatusSubscription_driver;
-  passenger: rideUpdates_RideStatusSubscription_passenger;
+  driver: rideUpdates_RideStatusSubscription_driver | null;
+  passenger: rideUpdates_RideStatusSubscription_passenger | null;
   chatId: number | null;
 }
 

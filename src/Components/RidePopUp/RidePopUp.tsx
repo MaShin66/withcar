@@ -3,6 +3,7 @@ import styled from "../../typed-components";
 import Button from "../Button";
 
 interface IProps {
+  id: number;
   pickUpAddress: string;
   dropOffAddress: string;
   price: number;
@@ -10,7 +11,6 @@ interface IProps {
   passengerName: string;
   passengerPhoto: string;
   acceptRideFn: any;
-  id: number;
 }
 
 const Container = styled.div`
@@ -52,6 +52,7 @@ const Passenger = styled.div`
 `;
 
 const RidePopUp: React.SFC<IProps> = ({
+  id,
   pickUpAddress,
   dropOffAddress,
   price,
@@ -59,7 +60,6 @@ const RidePopUp: React.SFC<IProps> = ({
   passengerName,
   passengerPhoto,
   acceptRideFn,
-  id
 }) => (
   <Container>
     <Title>출발지</Title>

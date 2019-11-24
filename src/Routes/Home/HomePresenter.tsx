@@ -64,17 +64,17 @@ interface IProps {
 }
 
 const HomePresenter: React.SFC<IProps> = ({
+  loading,
   isMenuOpen,
   toggleMenu,
-  loading,
-  toAddress,
   mapRef,
+  toAddress,
   onInputChange,
-  onAddressSubmit,
   price,
   data: { GetMyProfile: { user = null } = {} } = {},
-  nearbyRide: { GetNearbyRide: { ride = null } = {} } = {},
+  onAddressSubmit,
   requestRideFn,
+  nearbyRide: { GetNearbyRide: { ride = null } = {} } = {},
   acceptRideFn
 }) => (
   <Container>
@@ -94,8 +94,7 @@ const HomePresenter: React.SFC<IProps> = ({
       }}
     >
       {!loading && <MenuButton onClick={toggleMenu}>|||</MenuButton>}
-      {user &&
-        !user.isDriving && (
+      {user && !user.isDriving && (
           <React.Fragment>
             <AddressBar
               name={"toAddress"}
@@ -113,10 +112,13 @@ const HomePresenter: React.SFC<IProps> = ({
       {price && (
         <RequestButton
           onClick={requestRideFn}
+          // 주소에 아무것도 안적으면 요청이 되지 않음
           disabled={toAddress === ""}
           value={`요청할 금액은 $${price}`}
         />
       )}
+
+      {/* ride 라는 값이 존재할 때 생기는 창..? */}
       {ride && (
         <RidePopUp
           id={ride.id}

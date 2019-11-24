@@ -16,6 +16,7 @@ export const geoCode = async (address: string) => {
     } = firstPlace;
     return { formatted_address, lat, lng };
   } else {
+    console.log('data.error_message');
     toast.error(data.error_message);
     return false;
   }
@@ -33,6 +34,7 @@ export const reverseGeoCode = async (lat: number, lng: number) => {
     const address = firstPlace.formatted_address;
     return address;
   } else {
+    console.log('data.error_message');
     toast.error(data.error_message);
     return false;
   }

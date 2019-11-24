@@ -57,10 +57,12 @@ const combinedLinks = split(
 const errorLink = onError(({ graphQLErrors, networkError }) => {
   if (graphQLErrors) {
     graphQLErrors.map(({ message }) => {
+      console.log(`Unexpected error: ${message}`);
       toast.error(`Unexpected error: ${message}`);
     });
   }
   if (networkError) {
+    console.log(`Network error: ${networkError}`);
     toast.error(`Network error: ${networkError}`);
   }
 });

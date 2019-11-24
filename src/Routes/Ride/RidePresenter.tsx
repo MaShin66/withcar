@@ -1,3 +1,5 @@
+// 드라이버가 수락하면 양쪽 다 뜨는 창
+
 import React from "react";
 import { MutationFn } from "react-apollo";
 import { Link } from "react-router-dom";
@@ -56,41 +58,42 @@ const RidePresenter: React.SFC<IProps> = ({
   updateRideFn
 }) => (
   <Container>
-    {ride &&
-      user && (
+    {ride && user && (
         <React.Fragment>
-          <Title>Passenger</Title>
+          <Title>탑승자</Title>
           <Passenger>
-            <Img src={ride.passenger.profilePhoto!} />
+            <Img src={ride.passenger.profilePhoto} />
             <Data>{ride.passenger.fullName!}</Data>
           </Passenger>
           {ride.driver && (
             <React.Fragment>
-              <Title>Driver</Title>
+              <Title>운전자</Title>
               <Passenger>
-                <Img src={ride.driver.profilePhoto!} />
+                <Img src={ride.driver.profilePhoto} />
                 <Data>{ride.driver.fullName!}</Data>
               </Passenger>
             </React.Fragment>
           )}
-          <Title>From</Title>
+          <Title>출발지</Title>
           <Data>{ride.pickUpAddress}</Data>
-          <Title>To</Title>
+          <Title>도착지</Title>
           <Data>{ride.dropOffAddress}</Data>
-          <Title>Price</Title>
+          <Title>금액</Title>
           <Data>{ride.price}</Data>
-          <Title>Distance</Title>
+          <Title>거리</Title>
           <Data>{ride.distance}</Data>
-          <Title>Duration</Title>
-          <Data>{ride.duration}</Data>
-          <Title>Status</Title>
+          {/* <Title>Duration</Title>
+          <Data>{ride.duration}</Data> */}
+          <Title>상태</Title>
           <Data>{ride.status}</Data>
+
+{/* 조건에 따라 다르게 보여주는 버튼 */}
           <Buttons>
             {ride.driver &&
               ride.driver.id === user.id &&
               ride.status === "ACCEPTED" && (
                 <ExtendedButton
-                  value={"Picked Up"}
+                  value={"이용자 탑승 완료"}
                   onClick={() =>
                     updateRideFn({
                       variables: {
@@ -105,7 +108,7 @@ const RidePresenter: React.SFC<IProps> = ({
               ride.driver.id === user.id &&
               ride.status === "ONROUTE" && (
                 <ExtendedButton
-                  value={"Finished"}
+                  value={"운행 완료"}
                   onClick={() =>
                     updateRideFn({
                       variables: {
@@ -119,10 +122,15 @@ const RidePresenter: React.SFC<IProps> = ({
 
             {ride.status !== "REQUESTING" && (
               <Link to={`/chat/${ride.chatId}`}>
-                <ExtendedButton value={"Chat"} onClick={null} />
+                <ExtendedButton value={"대화하기"} onClick={null} />
               </Link>
             )}
           </Buttons>
+
+          <Link to={`/`}>
+            <ExtendedButton value={"취소하기"} onClick={null} />
+          </Link>
+          
         </React.Fragment>
       )}
   </Container>

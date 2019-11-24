@@ -34,12 +34,12 @@ class ChatContainer extends React.Component<IProps, IState> {
     };
   }
   public render() {
-    const {
-      match: {
-        params: { chatId }
-      }
-    } = this.props;
+    // 여기도 chatId 가 string이라 강제로 Int 변환 필요
+    // const { match: { params: { chatId } } } = this.props;
+    const chatId = Number(this.props.match.params.chatId);
+    // const chatId = tmp;
     const { message } = this.state;
+
     return (
       <ProfileQuery query={USER_PROFILE}>
         {({ data: userData }) => (
@@ -51,20 +51,19 @@ class ChatContainer extends React.Component<IProps, IState> {
                   if (!subscriptionData.data) {
                     return prev;
                   }
-                  const {
-                    data: { MessageSubscription }
-                  } = subscriptionData;
-                  const {
-                    GetChat: {
-                      chat: { messages }
-                    }
-                  } = prev;
+                  const { data: { MessageSubscription } } = subscriptionData;
+                  const { GetChat: { chat: { messages } } } = prev;
+                  console.log('MessageSubscription: ', MessageSubscription);
+                  console.log('messages: ', messages);
                   const newMessageId = MessageSubscription.id;
-                  const latestMessageId = messages[messages.length - 1].id;
 
-                //   메모리 누수로 인한 메세지 중복을 막아주는 코드
-                  if (newMessageId === latestMessageId) {
-                    return;
+                  // 바로 대화 시작하면 안돼서 새로고침 했어야 했는데 바꿔서 해결
+                  if (messages.length > 0) {
+                    const latestMessageId = messages[messages.length - 1].id;
+                    //   메모리 누수로 인한 메세지 중복을 막아주는 코드
+                    if (newMessageId === latestMessageId) {
+                      return;
+                    }
                   }
 
                   const newObject = Object.assign({}, prev, {
@@ -106,6 +105,8 @@ class ChatContainer extends React.Component<IProps, IState> {
       </ProfileQuery>
     );
   }
+
+  // 아래부터 함수
   public onInputChange: React.ChangeEventHandler<HTMLInputElement> = event => {
     const {
       target: { name, value }
@@ -114,13 +115,11 @@ class ChatContainer extends React.Component<IProps, IState> {
       [name]: value
     } as any);
   };
+
   public onSubmit = () => {
     const { message } = this.state;
-    const {
-      match: {
-        params: { chatId }
-      }
-    } = this.props;
+    // const { match: { params: { chatId } } } = this.props;
+    const chatId = Number(this.props.match.params.chatId);
     if (message !== "") {
       this.setState({
         message: ""

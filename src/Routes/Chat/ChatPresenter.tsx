@@ -1,4 +1,6 @@
 import React from "react";
+// import { Link } from "react-router-dom";
+// import Button from "../../Components/Button";
 import Form from "../../Components/Form";
 import Header from "../../Components/Header";
 import Input from "../../Components/Input";
@@ -21,6 +23,10 @@ const InputCont = styled.div`
   padding: 0 20px;
 `;
 
+// const ExtendedButton = styled(Button)`
+//   margin-bottom: 30px;
+// `;
+
 interface IProps {
   data?: getChat;
   userData?: userProfile;
@@ -31,19 +37,22 @@ interface IProps {
 }
 
 const ChatPresenter: React.SFC<IProps> = ({
-  loading,
   data: { GetChat: { chat = null } = {} } = {},
   userData: { GetMyProfile: { user = null } = {} } = {},
+  loading,
   messageText,
   onInputChange,
   onSubmit
 }) => (
   <Container>
-    <Header title={"Chat"} />
+    <Header title={"채팅방"} />
     {!loading &&
       chat &&
       user && (
         <React.Fragment>
+          {/* <Link to={`/ride/${chatId}`}>
+                <ExtendedButton value={"뒤로가기"} onClick={null} />
+          </Link> */}
           <Chat>
             {chat.messages &&
               chat.messages.map(message => {
@@ -63,7 +72,7 @@ const ChatPresenter: React.SFC<IProps> = ({
             <Form submitFn={onSubmit}>
               <Input
                 value={messageText}
-                placeholder={"Type your message"}
+                placeholder={"메세지를 입력하세요"}
                 onChange={onInputChange}
                 name={"message"}
               />

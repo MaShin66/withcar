@@ -270,11 +270,11 @@ class HomeContainer extends React.Component<IProps, IState> {
   };
 
   public handleGeoWatchError = () => {
-    console.log("Error watching you");
+    console.log("에러가 발생했습니다. 새로고침하거나 앱을 껐다가 켜주세요");
   };
 
   public handleGeoError = () => {
-    console.log("No location");
+    console.log("장소가 없습니다");
   };
 
   public onInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -297,12 +297,7 @@ class HomeContainer extends React.Component<IProps, IState> {
       if (this.toMarker) {
         this.toMarker.setMap(null);
       }
-      const toMarkerOptions: google.maps.MarkerOptions = {
-        position: {
-          lat,
-          lng
-        }
-      };
+      const toMarkerOptions: google.maps.MarkerOptions = { position: { lat, lng } };
       this.toMarker = new maps.Marker(toMarkerOptions);
       this.toMarker.setMap(this.map);
       const bounds = new maps.LatLngBounds();
@@ -365,7 +360,7 @@ class HomeContainer extends React.Component<IProps, IState> {
         this.setPrice
       );
     } else {
-      toast.error("구글 정책으로 인해 당분간은 대중교통으로만 경로가 나타납니다");
+      toast.error("경로를 찾을 수 없습니다. 도착지를 정확히 입력하거나 근처로 설정해주세요.");
     }
   };
 
@@ -380,6 +375,7 @@ class HomeContainer extends React.Component<IProps, IState> {
     }
   };
 
+  // 근처 드라이버에게 팝업 띄우기
   public handleNearbyDrivers = (data: {} | getDrivers) => {
     if ("GetNearbyDrivers" in data) {
       const {
@@ -426,13 +422,15 @@ class HomeContainer extends React.Component<IProps, IState> {
     }
   };
 
+  // 경로 찾고 요청하기 눌렀을 때
   public handleRideRequest = (data: requestRide) => {
     const { history } = this.props;
     const { RequestRide } = data;
     if (RequestRide.ok) {
-      toast.success("Drive requested, finding a driver");
+      toast.success("탑승이 등록되었습니다. 드라이버를 찾고 있습니다.");
       history.push(`/ride/${RequestRide.ride!.id}`);
     } else {
+      console.log('RequestRide.error');
       toast.error(RequestRide.error);
     }
   };
@@ -440,9 +438,7 @@ class HomeContainer extends React.Component<IProps, IState> {
   public handleProfileQuery = (data: userProfile) => {
     const { GetMyProfile } = data;
     if (GetMyProfile.user) {
-      const {
-        user: { isDriving }
-      } = GetMyProfile;
+      const { user: { isDriving } } = GetMyProfile;
       this.setState({
         isDriving
       });

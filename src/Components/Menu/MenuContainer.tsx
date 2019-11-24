@@ -17,20 +17,22 @@ class MenuContainer extends React.Component {
         // cache 에 update 하기 위한
         update={(cache, { data }) => {
           if (data) {
-            // data 안에 ToggleDrivingMode 가 있는데 그 값을 이제 data 라 한다.
+            // data 안에 있는 ToggleDrivingMode 를 언급
             const { ToggleDrivingMode } = data;
             // ok 가 없다면 에러 표시
             if (!ToggleDrivingMode.ok) {
+              console.log('ToggleDrivingMode.error');
               toast.error(ToggleDrivingMode.error);
               return;
             }
             // 정상적이라면 아래 진행
             const query: userProfile | null = cache.readQuery({ query: USER_PROFILE });
-            console.log(query);
             if (query) {
+              // query 안에 GetMyProfile 안에 user 가 있다.
               const { GetMyProfile: { user } } = query;
               if (user) {
-                user.isDriving = !user.isDriving;
+                window.location.href = "/";
+                // user.isDriving = !user.isDriving;
               }
             }
             cache.writeQuery({ query: USER_PROFILE, data: query });

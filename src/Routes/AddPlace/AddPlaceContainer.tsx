@@ -43,6 +43,7 @@ class AddPlaceContainer extends React.Component<IProps, IState> {
               history.push("/places");
             }, 2000);
           } else {
+            console.log('AddPlace.error');
             toast.error(AddPlace.error);
           }
         }}
