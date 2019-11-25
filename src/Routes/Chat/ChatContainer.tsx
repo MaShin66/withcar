@@ -53,8 +53,8 @@ class ChatContainer extends React.Component<IProps, IState> {
                   }
                   const { data: { MessageSubscription } } = subscriptionData;
                   const { GetChat: { chat: { messages } } } = prev;
-                  console.log('MessageSubscription: ', MessageSubscription);
-                  console.log('messages: ', messages);
+                  // console.log('MessageSubscription: ', MessageSubscription);
+                  // console.log('messages: ', messages);
                   const newMessageId = MessageSubscription.id;
 
                   // 바로 대화 시작하면 안돼서 새로고침 했어야 했는데 바꿔서 해결
