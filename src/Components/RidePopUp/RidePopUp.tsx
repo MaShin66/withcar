@@ -1,6 +1,6 @@
-import React from "react";
-import styled from "../../typed-components";
-import Button from "../Button";
+import React from 'react';
+import styled from '../../typed-components';
+import Button from '../Button';
 
 interface IProps {
   id: number;

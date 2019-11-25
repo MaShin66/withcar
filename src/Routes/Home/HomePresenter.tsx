@@ -1,13 +1,13 @@
-import React from "react";
-import { MutationFn } from "react-apollo";
-import Helmet from "react-helmet";
-import Sidebar from "react-sidebar";
-import AddressBar from "../../Components/AddressBar";
-import Button from "../../Components/Button";
-import Menu from "../../Components/Menu";
-import RidePopUp from "../../Components/RidePopUp";
-import styled from "../../typed-components";
-import { getRides, userProfile } from "../../types/api";
+import React from 'react';
+import { MutationFn } from 'react-apollo';
+import Helmet from 'react-helmet';
+import Sidebar from 'react-sidebar';
+import AddressBar from '../../Components/AddressBar';
+import Button from '../../Components/Button';
+import Menu from '../../Components/Menu';
+import RidePopUp from '../../Components/RidePopUp';
+import styled from '../../typed-components';
+import { getRides, userProfile } from '../../types/api';
 
 const Container = styled.div``;
 

@@ -1148,9 +1148,13 @@
             "description": "",
             "args": [],
             "type": {
-              "kind": "OBJECT",
-              "name": "User",
-              "ofType": null
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "User",
+                "ofType": null
+              }
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -1176,9 +1180,13 @@
             "description": "",
             "args": [],
             "type": {
-              "kind": "OBJECT",
-              "name": "User",
-              "ofType": null
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "User",
+                "ofType": null
+              }
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -2847,13 +2855,13 @@
         "interfaces": null,
         "enumValues": [
           {
-            "name": "ACCEPTED",
+            "name": "REQUESTING",
             "description": "",
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "FINISHED",
+            "name": "ACCEPTED",
             "description": "",
             "isDeprecated": false,
             "deprecationReason": null
@@ -2865,13 +2873,13 @@
             "deprecationReason": null
           },
           {
-            "name": "REQUESTING",
+            "name": "ONROUTE",
             "description": "",
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "ONROUTE",
+            "name": "FINISHED",
             "description": "",
             "isDeprecated": false,
             "deprecationReason": null

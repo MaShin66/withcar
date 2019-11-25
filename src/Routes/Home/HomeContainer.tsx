@@ -1,11 +1,16 @@
-import { SubscribeToMoreOptions } from "apollo-client";
-import React from "react";
-import { graphql, Mutation, MutationFn, Query } from "react-apollo";
-import ReactDOM from "react-dom";
-import { RouteComponentProps } from "react-router-dom";
-import { toast } from "react-toastify";
-import { geoCode, reverseGeoCode } from "../../mapHelpers";
-import { USER_PROFILE } from "../../sharedQueries";
+import { SubscribeToMoreOptions } from 'apollo-client';
+import React from 'react';
+import {
+  graphql,
+  Mutation,
+  MutationFn,
+  Query
+  } from 'react-apollo';
+import ReactDOM from 'react-dom';
+import { RouteComponentProps } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import { geoCode, reverseGeoCode } from '../../mapHelpers';
+import { USER_PROFILE } from '../../sharedQueries';
 import {
   acceptRide,
   acceptRideVariables,
@@ -16,8 +21,8 @@ import {
   requestRide,
   requestRideVariables,
   userProfile
-} from "../../types/api";
-import HomePresenter from "./HomePresenter";
+  } from '../../types/api';
+import HomePresenter from './HomePresenter';
 import {
   ACCEPT_RIDE,
   GET_NEARBY_DRIVERS,
@@ -25,7 +30,7 @@ import {
   REPORT_LOCATION,
   REQUEST_RIDE,
   SUBSCRIBE_NEARBY_RIDES
-} from "./HomeQueries";
+  } from './HomeQueries';
 
 interface IState {
   isMenuOpen: boolean;

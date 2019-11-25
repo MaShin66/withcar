@@ -9,7 +9,6 @@ import {
 import AddPlace from '../../Routes/AddPlace';
 import Chat from '../../Routes/Chat';
 import EditAccount from '../../Routes/EditAccount';
-import EmailSignUp from '../../Routes/EmailSignUp';
 import FindAddress from '../../Routes/FindAddress';
 import Home from '../../Routes/Home';
 import Login from '../../Routes/Login';
@@ -36,7 +35,6 @@ const LoggedOutRoutes: React.SFC = () => (
     <Route path={"/phone-login"} component={PhoneLogin} />
     <Route path={"/verify-phone"} component={VerifyPhone} />
     <Route path={"/social-login"} component={SocialLogin} />
-    <Route path={"/email-signup"} component={EmailSignUp} />
     <Redirect from={"*"} to={"/"} />
   </Switch>
 );
