@@ -19,7 +19,7 @@ class VerifyMutation extends Mutation<verifyPhone, verifyPhoneVariables> {}
 class VerifyPhoneContainer extends React.Component<IProps, IState> {
   constructor(props: IProps) {
     super(props);
-    if (!props.location.state) {
+    if (!props.location.state) { // url에 get 방식처럼 직접 노출되면 안되니 state 에 담아서 보냄 그래서 없으면 돌려보내기
       props.history.push("/");
     }
     this.state = {
@@ -27,6 +27,7 @@ class VerifyPhoneContainer extends React.Component<IProps, IState> {
       verificationKey: ""
     };
   }
+
   public render() {
     const { verificationKey, phoneNumber } = this.state;
     return (
@@ -34,19 +35,13 @@ class VerifyPhoneContainer extends React.Component<IProps, IState> {
         {logUserIn => (
           <VerifyMutation
             mutation={VERIFY_PHONE}
-            variables={{
-              key: verificationKey,
-              phoneNumber
-            }}
+            variables={{ key: verificationKey, phoneNumber }}
             onCompleted={data => {
               const { CompletePhoneVerification } = data;
-              console.log(CompletePhoneVerification);
               if (CompletePhoneVerification.ok) {
                 if (CompletePhoneVerification.token) {
                   logUserIn({
-                    variables: {
-                      token: CompletePhoneVerification.token
-                    }
+                    variables: { token: CompletePhoneVerification.token }
                   });
                 }
                 toast.success("확인되었습니다. 로그인 화면으로 이동합니다.");
@@ -55,6 +50,7 @@ class VerifyPhoneContainer extends React.Component<IProps, IState> {
               }
             }}
           >
+
             {(mutation, { loading }) => (
               <VerifyPhonePresenter
                 onSubmit={mutation}

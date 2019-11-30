@@ -9,6 +9,7 @@ import { getMainDefinition } from "apollo-utilities";
 import { toast } from "react-toastify";
 
 const isDev = process.env.NODE_ENV === "development";
+// const isDev = false;
 console.log(isDev);
 
 const getToken = () => {
@@ -34,15 +35,19 @@ const authMiddleware = new ApolloLink((operation: Operation, forward: any) => {
 const httpLink = new HttpLink({
   uri: isDev
     ? "http://localhost:4000/graphql"
-    : "https://nuberserver.now.sh/graphql"
+    : "https://withcar.herokuapp.com/graphql"
 });
 
 const wsLink = new WebSocketLink({
   options: {
-    connectionParams: { "X-JWT": getToken() },
+    connectionParams: {
+      "X-JWT": getToken()
+    },
     reconnect: true
   },
-  uri: "ws://localhost:4000/subscription"
+  uri: isDev
+    ? "ws://localhost:4000/subscription"
+    : "ws://withcar.herokuapp.com/subscription"
 });
 
 const combinedLinks = split(
@@ -77,6 +82,7 @@ const localStateLink = withClientState({
   },
   resolvers: {
     Mutation: {
+      // 로그인 시키기
       logUserIn: (_, { token }, { cache: appCache }) => {
         localStorage.setItem("jwt", token);
         appCache.writeData({
@@ -89,6 +95,7 @@ const localStateLink = withClientState({
         });
         return null;
       },
+      // 로그아웃 시키기
       logUserOut: (_, __, { cache: appCache }) => {
         localStorage.removeItem("jwt");
         appCache.writeData({

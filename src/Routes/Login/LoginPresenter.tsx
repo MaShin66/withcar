@@ -79,17 +79,17 @@ const OutHomePresenter: React.SFC<IProps> = () => (
       </Logo>
     </Header>
     <Footer>
+    <Subtitle>WithCar 카풀 시작</Subtitle>
       <Link to={"/phone-login"}>
         <PhoneLogin>
-          <Subtitle>WithCar 카풀 시작</Subtitle>
           <FakeInput>
-            🇰🇷 +82 <Grey>휴대폰 번호로 회원가입하기</Grey>
+            🇰🇷 +82 <Grey>휴대폰 번호로 로그인 / 회원가입하기</Grey>
           </FakeInput>
         </PhoneLogin>
       </Link>
       <Link to={"/social-login"}>
         <SocialLogin>
-          <SocialLink>페이스북 아이디로 회원가입하기</SocialLink>
+          <SocialLink>페이스북 아이디로 로그인 / 회원가입하기</SocialLink>
         </SocialLogin>
       </Link>
     </Footer>

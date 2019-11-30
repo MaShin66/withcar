@@ -115,7 +115,8 @@ class HomeContainer extends React.Component<IProps, IState> {
           <NearbyQueries
             query={GET_NEARBY_DRIVERS}
             skip={isDriving}
-            pollInterval={5000}
+            // https://www.apollographql.com/docs/react/api/react-components/#props
+            pollInterval={5000} // 근처에 있는 드라이버를 얼마의 간격으로 업데이트할지
             onCompleted={this.handleNearbyDrivers}
           >
             {() => (
@@ -200,9 +201,7 @@ class HomeContainer extends React.Component<IProps, IState> {
   };
 
   public handleGeoSucces = (positon: Position) => {
-    const {
-      coords: { latitude, longitude }
-    } = positon;
+    const { coords: { latitude, longitude } } = positon;
     this.setState({
       lat: latitude,
       lng: longitude
@@ -259,11 +258,10 @@ class HomeContainer extends React.Component<IProps, IState> {
     );
   };
 
+  // 내 위치를 last 위치에 저장
   public handleGeoWatchSuccess = (position: Position) => {
     const { reportLocation } = this.props;
-    const {
-      coords: { latitude, longitude }
-    } = position;
+    const { coords: { latitude, longitude } } = position;
     this.userMarker.setPosition({ lat: latitude, lng: longitude });
     this.map.panTo({ lat: latitude, lng: longitude });
     reportLocation({
@@ -375,12 +373,12 @@ class HomeContainer extends React.Component<IProps, IState> {
     console.log(distance);
     if (distance) {
       this.setState({
-        price: Number((parseFloat(distance.replace(",", "")) * 3).toFixed(2))
+        price: Number((parseFloat(distance.replace(",", "")) * 1000).toFixed(2))
       });
     }
   };
 
-  // 근처 드라이버에게 팝업 띄우기
+  // 근처 탑승자에게 운전자 위치 표시
   public handleNearbyDrivers = (data: {} | getDrivers) => {
     if ("GetNearbyDrivers" in data) {
       const {

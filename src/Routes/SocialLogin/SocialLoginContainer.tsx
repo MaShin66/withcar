@@ -7,10 +7,7 @@ import { facebookConnect, facebookConnectVariables } from "../../types/api";
 import SocialLoginPresenter from "./SocialLoginPresenter";
 import { FACEBOOK_CONNECT } from "./SocialLoginQueries";
 
-class LoginMutation extends Mutation<
-  facebookConnect,
-  facebookConnectVariables
-> {}
+class LoginMutation extends Mutation<facebookConnect, facebookConnectVariables> {}
 
 interface IState {
   firstName: string;
@@ -39,9 +36,7 @@ class SocialLoginContainer extends React.Component<IProps, IState> {
               const { FacebookConnect } = data;
               if (FacebookConnect.ok) {
                 logUserIn({
-                  variables: {
-                    token: FacebookConnect.token
-                  }
+                  variables: { token: FacebookConnect.token }
                 });
               } else {
                 toast.error(FacebookConnect.error);
@@ -62,8 +57,9 @@ class SocialLoginContainer extends React.Component<IProps, IState> {
 
   public loginCallback = response => {
     const { name, first_name, last_name, email, id, accessToken } = response;
+    console.log(accessToken);
     if (accessToken) {
-      toast.success(`${name}님 회원가입 됐습니다`);
+      toast.success(`${name}님 로그인 됐습니다`);
       this.facebookMutation({
         variables: {
           email,

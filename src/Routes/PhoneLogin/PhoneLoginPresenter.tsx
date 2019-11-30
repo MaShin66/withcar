@@ -87,7 +87,7 @@ const PhoneLoginPresenter: React.SFC<IProps> = ({
     </CountrySelect>
     <Form onSubmit={onSubmit}>
       <Input
-        placeholder={"10 1234 5678 (맨 앞에 0을 빼고 입력해주세요)"}
+        placeholder={"1022223333 (010에서 0을 빼고 입력해주세요)"}
         value={phoneNumber}
         name={"phoneNumber"}
         onChange={onInputChange}

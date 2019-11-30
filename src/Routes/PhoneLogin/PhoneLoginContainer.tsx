@@ -7,23 +7,21 @@ import {
   startPhoneVerificationVariables
 } from "../../types/api";
 import PhoneLoginPresenter from "./PhoneLoginPresenter";
-import { PHONE_SIGN_IN } from "./PhoneQueries";
+import { PHONE_SIGN_IN } from "./PhoneQueries"; // Query 에서 Data 송수신 하기 위해
 
 interface IState {
   countryCode: string;
   phoneNumber: string;
 }
 
-class PhoneSignInMutation extends Mutation<
-  startPhoneVerification,
-  startPhoneVerificationVariables
-> {}
+class PhoneSignInMutation extends Mutation<startPhoneVerification, startPhoneVerificationVariables> {}
 
 class PhoneLoginContainer extends React.Component<
   RouteComponentProps<any>,
   IState
 > {
   public phoneMutation: MutationFn;
+
   public state = {
     countryCode: "+82",
     phoneNumber: ""
@@ -32,13 +30,13 @@ class PhoneLoginContainer extends React.Component<
   public render() {
     const { history } = this.props;
     const { countryCode, phoneNumber } = this.state;
+
     return (
-      <PhoneSignInMutation
-        mutation={PHONE_SIGN_IN}
-        variables={{
-          phoneNumber: `${countryCode}${phoneNumber}`
-        }}
-        onCompleted={data => {
+      <PhoneSignInMutation // 쿼리가 담겨있는 < >
+        mutation={PHONE_SIGN_IN} // 위에서 선언한 쿼리 이름 적고
+        variables={{ phoneNumber: `${countryCode}${phoneNumber}`  }} // PHONE_SIGN_IN 가 변수를 phoneNumber 받으니까
+
+        onCompleted={data => { // onCompleted 했을 때 쿼리로 받아온 리턴값이 data
           const { StartPhoneVerification } = data;
           const phone = `${countryCode}${phoneNumber}`;
           if (StartPhoneVerification.ok) {
@@ -46,9 +44,7 @@ class PhoneLoginContainer extends React.Component<
             setTimeout(() => {
               history.push({
                 pathname: "/verify-phone",
-                state: {
-                  phone
-                }
+                state: { phone }
               });
             }, 2000);
           } else {
@@ -56,9 +52,10 @@ class PhoneLoginContainer extends React.Component<
           }
         }}
       >
+
         {(phoneMutation, { loading }) => {
           this.phoneMutation = phoneMutation;
-          return (
+          return ( // 보여주기 위한 PhoneLoginPresenter 로 넘어가는 곳
             <PhoneLoginPresenter
               countryCode={countryCode}
               phoneNumber={phoneNumber}
@@ -68,16 +65,13 @@ class PhoneLoginContainer extends React.Component<
             />
           );
         }}
+
       </PhoneSignInMutation>
     );
   }
 
-  public onInputChange: React.ChangeEventHandler<
-    HTMLInputElement | HTMLSelectElement
-  > = event => {
-    const {
-      target: { name, value }
-    } = event;
+  public onInputChange: React.ChangeEventHandler<HTMLInputElement | HTMLSelectElement> = event => {
+    const { target: { name, value } } = event;
     this.setState({
       [name]: value
     } as any);

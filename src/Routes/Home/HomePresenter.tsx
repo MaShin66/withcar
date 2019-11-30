@@ -114,7 +114,7 @@ const HomePresenter: React.SFC<IProps> = ({
           onClick={requestRideFn}
           // 주소에 아무것도 안적으면 요청이 되지 않음
           disabled={toAddress === ""}
-          value={`요청할 금액은 $${price}`}
+          value={`요청할 금액은 ${price}원`}
         />
       )}
 
